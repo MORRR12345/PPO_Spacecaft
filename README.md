@@ -1,6 +1,6 @@
-# PPO_Spacecaft
+# 🚀PPO_Spacecaft
 基于航天器动力学的简单PPO框架
-## 文件结构
+## 📁文件结构
 ```
 ├── .vscode/                     ## vscode编译器文件夹
 │   └── settings.json             # 编译器配置文件夹
@@ -30,12 +30,12 @@
 ├── play.py                      ## 演示
 └── tool.py                      ## 工具
 ```
-## 需要的环境
+## 🔨需要的环境
 - python3.8以上(推荐3.11)
 - pytorch(根据自己显卡下载版本)
 - numpy(一般不用安装, 会自带)
 - matplotlib
 - tqdm
-## 使用
+## 🎮使用
 - 先运行`python train.py`, 训练网络, 训练好的数据会自动存在`model/`文件夹里
 - 然后运行`python play.py`, 查看效果
