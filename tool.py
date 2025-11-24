@@ -10,7 +10,7 @@ def find_path(time="latest", epoch="latest", type = "actor"):
     # 获取时间目录
     time_path = _get_time_path("model", time)
     # 获取模型路径
-    path = _get_model_path(time_path, f"{type}_pth", "actor", epoch)
+    path = _get_model_path(time_path, f"{type}_pth", type, epoch)
     print(f"📁 找到{type}模型路径: {path}")
     return path
 
