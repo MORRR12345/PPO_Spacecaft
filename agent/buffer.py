@@ -48,31 +48,3 @@ class ExperienceBuffer:
     def clear(self):
         """清空所有存储的经验"""
         self.buffer.clear()
-
-####################################    消息池    ####################################
-class MessageBuffer:
-    """消息池，用于存储和处理智能体间的消息"""
-    def __init__(self, capacity):
-        self.buffer = deque(maxlen=capacity)  # 核心缓冲区，自动移除旧经验
-
-    def push_batch(self, pre_message, next_message):
-        """将多个经验存储到缓冲区"""
-        batch_size = pre_message.size(0)
-        for i in range(batch_size):
-            # 打包所有数据为一个元组
-            message = (
-                pre_message[i].clone().detach().to(DEVICE),
-                next_message[i].clone().detach().to(DEVICE)
-            )
-            self.buffer.append(message)
-    
-    def prepare_all_data(self):
-        """返回整个缓冲区的数据"""
-        return {
-            'pre_message': torch.stack([exp[0] for exp in self.buffer]),
-            'next_message': torch.stack([exp[1] for exp in self.buffer])
-        }
-    
-    def clear(self):
-        """清空所有存储的经验"""
-        self.buffer.clear()
