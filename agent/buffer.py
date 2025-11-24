@@ -10,20 +10,6 @@ class ExperienceBuffer:
     def __init__(self, capacity):
         self.buffer = deque(maxlen=capacity)  # 核心缓冲区，自动移除旧经验
 
-    def push_all_batch(self, obs, action, logs, reward, next_obs):
-        """将多个经验存储到缓冲区"""
-        batch_size = obs.size(0)
-        for i in range(batch_size):
-            # 打包所有数据为一个元组
-            experience = (
-                obs[i].clone().detach().to(DEVICE),
-                action[i].clone().detach().to(DEVICE),
-                logs[i].clone().detach().to(DEVICE),
-                reward[i].clone().detach().to(DEVICE),
-                next_obs[i].clone().detach().to(DEVICE)
-            )
-            self.buffer.append(experience)
-
     def push_batch(self, obs, action, logs, reward, next_obs):
         """将多个经验存储到缓冲区"""
         experience = (
@@ -48,3 +34,4 @@ class ExperienceBuffer:
     def clear(self):
         """清空所有存储的经验"""
         self.buffer.clear()
+
