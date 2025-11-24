@@ -9,19 +9,10 @@ def find_path(time="latest", epoch="latest", type = "actor"):
     """查找模型路径"""
     # 获取时间目录
     time_path = _get_time_path("model", time)
-
-    if type == "actor":
-        # 获取actor模型路径
-        actor_path = _get_model_path(time_path, "actor_pth", "actor", epoch)
-        print(f"📁 找到actor模型路径: {actor_path}")
-        return actor_path
-    elif type == "critic":
-        # 获取critic模型路径
-        critic_path = _get_model_path(time_path, "critic_pth", "critic", epoch)
-        print(f"📁 找到critic模型路径: {critic_path}")
-        return critic_path
-    else:
-        raise ValueError(f"类型错误: {type}")
+    # 获取模型路径
+    path = _get_model_path(time_path, f"{type}_pth", "actor", epoch)
+    print(f"📁 找到{type}模型路径: {path}")
+    return path
 
 def _get_time_path(base_path, time):
     """获取时间目录路径"""
